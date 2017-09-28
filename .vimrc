@@ -29,6 +29,10 @@ set shiftround
 " Turn off wrapping
 set nowrap
 
+" Sets wrapping for certain types of files based on extension
+autocmd BufRead,BufNewFile *.txt setlocal wrap linebreak
+autocmd BufRead,BufNewFile *.md setlocal wrap linebreak
+
 " Enable 256-color mode
 set t_Co=256
 
@@ -45,9 +49,6 @@ set nowritebackup
 
 " Default character encoding
 set encoding=utf-8
-
-autocmd BufRead,BufNewFile *.txt setlocal wrap linebreak
-autocmd BufRead,BufNewFile *.md setlocal wrap linebreak
 
 " Highlight all search hits
 set hlsearch
