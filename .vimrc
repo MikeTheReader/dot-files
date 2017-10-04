@@ -56,3 +56,6 @@ set hlsearch
 " Map keyboard commands
 map <F7> :tabp<CR>
 map <F8> :tabn<CR>
+
+" Don't save colorscheme and fontsize in the session
+set sessionoptions-=options
