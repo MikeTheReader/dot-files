@@ -11,6 +11,9 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Hom
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 
+# Load aliases
+source ~/.aliases
+
 # Bind special keys
 bindkey "^[[3~" delete-char
 
