@@ -1,0 +1,26 @@
+
+
+
+# <type>[(optional scope)]: <description>
+# 
+# [optional body]
+#
+# [optional footer]
+#
+# 50-character subject line
+#
+# 72-character wrapped longer description.
+#
+# type: fix, feat, chore, docs, style, refactor, perf, test
+# description: imperitave case ("correct", "add", "drop")
+# body: must begin one blank line after the description.
+#
+# If the change is a breaking change, the text "BREAKING CHANGE:"
+# must be in the first line of the body.
+#
+# Example:
+# fix: correct minor typos in code
+# 
+# see the issue for details on the typos fixed
+# 
+# closes issue #12
