@@ -9,6 +9,7 @@ export PATH=$PATH:$GOPATH/bin
 export PATH="/usr/local/opt/mongodb@3.4/bin:$PATH"
 export PATH="$HOME/.fastlane/bin:$PATH"
 export PATH="~/.local/bin:$PATH"
+export PATH="/usr/local/opt/mongodb-community@3.4/bin:$PATH"
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home
 export WORKON_HOME=$HOME/.virtualenvs
@@ -93,18 +94,11 @@ eval $(thefuck --alias)
 # Enables Python's virtualenvwrapper tool
 source /usr/local/bin/virtualenvwrapper.sh
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/michael.lundin/Projects/competition-squad/omnius/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/michael.lundin/Projects/competition-squad/omnius/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/michael.lundin/Projects/competition-squad/omnius/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/michael.lundin/Projects/competition-squad/omnius/node_modules/tabtab/.completions/sls.zsh
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /Users/michael.lundin/Projects/ifit/skills/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/michael.lundin/Projects/ifit/skills/node_modules/tabtab/.completions/slss.zsh
+# Sets up the AWS-Credentials as per the devops script
+source .aws-credentials
