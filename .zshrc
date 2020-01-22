@@ -2,7 +2,7 @@
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export GOPATH=$(go env GOPATH)
 export PATH="/Users/michael.lundin/Tools/flutter/bin:$PATH"
-export PATH="/Users/michael.lundin/bin:/usr/local/opt/mongodb@3.2/bin:$PATH"
+export PATH="/Users/michael.lundin/bin:$PATH"
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$GOPATH/bin
