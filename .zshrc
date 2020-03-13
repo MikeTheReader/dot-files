@@ -85,9 +85,6 @@ set-node-path() {
 }
 add-zsh-hook chpwd set-node-path
 
-# Allows for the "code ." cli shortcut
-code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
-
 # Enables fuck command
 eval $(thefuck --alias)
 
@@ -102,3 +99,13 @@ fi
 
 # Sets up the AWS-Credentials as per the devops script
 source .aws-credentials
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/michael.lundin/.config/yarn/global/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/michael.lundin/.config/yarn/global/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/michael.lundin/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/michael.lundin/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/michael.lundin/Projects/ifit/wolf-workouts-service/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/michael.lundin/Projects/ifit/wolf-workouts-service/node_modules/tabtab/.completions/slss.zsh

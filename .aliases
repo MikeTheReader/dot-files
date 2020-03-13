@@ -1,3 +1,19 @@
 alias clean_branches="git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
 alias addspacer="defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type=\"spacer-tile\";}' && killall Dock"
+devrepo() { 
+  cd ~/Projects/ifit/$1
+	code . 
+}
+
+openrepo() { 
+	cd ~/Projects/ifit/$1 
+}
+
+review() {
+  openrepo $1
+	git fetch 
+  git checkout $2
+	git pull
+	code .
+}
 
