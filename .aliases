@@ -17,3 +17,24 @@ review() {
 	code .
 }
 
+alias connectVPN="osascript -e 'tell application \"Tunnelblick\"' -e '  get name of first configuration' -e '  connect result' -e '  repeat until result = \"CONNECTED\"' -e '    delay 1' -e '    get state of first configuration' -e '  end repeat' -e 'end tell'"
+
+alias disconnectVPN="osascript -e 'tell application \"Tunnelblick\"' -e '  get name of first configuration' -e '  disconnect result' -e '  repeat until result = \"EXITING\"' -e '    delay 1' -e '    get state of first configuration' -e '  end repeat' -e 'end tell'"
+
+pulltestdata() {
+  connectVPN
+	mongodump --host galactica.ifit-dev.com --port 60000 --ssl --sslCAFile ~/.ssh/mongodb.ca.cert.pem --sslPEMKeyFile ~/.ssh/mongodb.viper-user.key-and-cert.pem --out=/Volumes/Storage/DB_backup/test
+	disconnectVPN
+}
+
+alias restoretestdata="mongorestore --drop --noIndexRestore /Volumes/Storage/DB_backup/test"
+
+pullviperdata() {
+	connectVPN
+  mongodump --host galactica.ifit-dev.com --port $1 --ssl --sslCAFile ~/.ssh/mongodb.ca.cert.pem --sslPEMKeyFile ~/.ssh/mongodb.viper-user.key-and-cert.pem --out=/Volumes/Storage/DB_backup/viper
+	disconnectVPN
+}
+
+alias restoreviperdata="mongorestore --drop --noIndexRestore /Volumes/Storage/DB_backup/viper"
+
+
