@@ -1,19 +1,19 @@
 # Set up environment variables
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export GOPATH=$(go env GOPATH)
-export PATH="/Users/michael.lundin/Tools/flutter/bin:$PATH"
-export PATH="/Users/michael.lundin/bin:$PATH"
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$GOPATH/bin
-export PATH="/usr/local/opt/mongodb@3.4/bin:$PATH"
-export PATH="$HOME/.fastlane/bin:$PATH"
-export PATH="~/.local/bin:$PATH"
-export PATH="/usr/local/opt/mongodb-community@3.4/bin:$PATH"
-
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
+
+export PATH="$HOME/Tools/flutter/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$GOPATH/bin
+
+export PATH="$HOME/.fastlane/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/usr/local/opt/mongodb-community@3.4/bin:$PATH"
 
 # Load aliases
 source ~/.aliases
@@ -73,6 +73,7 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
+# iFit specific: Automatically sets the NODE_PATH when inside the ifit repository
 set-node-path() {
   if [ "$PWD" == "/Users/michael.lundin/Projects/ifit/ifit" ]
   then

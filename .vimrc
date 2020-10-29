@@ -26,6 +26,10 @@ set softtabstop=2
 set shiftwidth=2
 set shiftround
 
+augroup aliases
+	autocmd BufRead,BufNewFile *.aliases set filetype=sh
+augroup END
+
 " Turn off wrapping
 set nowrap
 

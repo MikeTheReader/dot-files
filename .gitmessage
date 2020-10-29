@@ -19,8 +19,8 @@
 # must be in the first line of the body.
 #
 # Example:
-# fix: correct minor typos in code
+# fix: Correct minor typos in code
 # 
-# see the issue for details on the typos fixed
-# 
-# closes issue #12
+# See the issue for details on the typos fixed.
+#
+# Closes FOUND-1234

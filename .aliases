@@ -9,6 +9,7 @@ openrepo() {
 	cd ~/Projects/ifit/$1 
 }
 
+# Start code review. Usage: review {repo_name} {branch_name}
 review() {
   openrepo $1
 	git fetch 
@@ -18,23 +19,42 @@ review() {
 }
 
 alias connectVPN="osascript -e 'tell application \"Tunnelblick\"' -e '  get name of first configuration' -e '  connect result' -e '  repeat until result = \"CONNECTED\"' -e '    delay 1' -e '    get state of first configuration' -e '  end repeat' -e 'end tell'"
-
 alias disconnectVPN="osascript -e 'tell application \"Tunnelblick\"' -e '  get name of first configuration' -e '  disconnect result' -e '  repeat until result = \"EXITING\"' -e '    delay 1' -e '    get state of first configuration' -e '  end repeat' -e 'end tell'"
 
-pulltestdata() {
+pulldata() {
   connectVPN
-	mongodump --host galactica.ifit-dev.com --port 60000 --ssl --sslCAFile ~/.ssh/mongodb.ca.cert.pem --sslPEMKeyFile ~/.ssh/mongodb.viper-user.key-and-cert.pem --out=/Volumes/Storage/DB_backup/test
+  mongodump --host galactica.ifit-dev.com --port $1 --ssl --sslCAFile ~/.ssh/mongodb.ca.cert.pem --sslPEMKeyFile ~/.ssh/mongodb.viper-user.key-and-cert.pem --out=/Volumes/Storage/DB_backup/$2
 	disconnectVPN
 }
 
-alias restoretestdata="mongorestore --drop --noIndexRestore /Volumes/Storage/DB_backup/test"
+restoredata() {
+  mongorestore --drop --noIndexRestore /Volumes/Storage/DB_backup/$1
+}
+
+alias pulltestdata="pulldata 60000 test"
+alias restoretestdata="restoredata test"
 
 pullviperdata() {
-	connectVPN
-  mongodump --host galactica.ifit-dev.com --port $1 --ssl --sslCAFile ~/.ssh/mongodb.ca.cert.pem --sslPEMKeyFile ~/.ssh/mongodb.viper-user.key-and-cert.pem --out=/Volumes/Storage/DB_backup/viper
-	disconnectVPN
+  pulldata $1 viper
+}
+alias restoreviperdata="restoredata viper"
+
+refreshifit() {
+  cd ~/Projects/ifit/ifit
+	echo 'Removing node_modules...'
+	rm -rf node_modules
+	echo '\nRunning make install...'
+	make install
+	echo '\nRunning make build...'
+	make build
+	cd ./apps/new-web
+	echo '\nRemoving node_modules...'
+	rm -rf node_modules
+	echo '\nRunning npm install...'
+	npm install
+	cd ../../
+	echo 'Done.'
 }
 
-alias restoreviperdata="mongorestore --drop --noIndexRestore /Volumes/Storage/DB_backup/viper"
-
-
+alias stripewebhooks="stripe listen --forward-to http://api-local.ifit-dev.com:8080/v1/stripe/webhooks"
+alias webhooks="stripewebhooks"
