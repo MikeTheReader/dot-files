@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Set up environment variables
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export GOPATH=$(go env GOPATH)
@@ -33,17 +40,11 @@ set-window-title() {
 add-zsh-hook precmd set-window-title
 set-window-title
 
-# Powerlevel9k theme configuration -- controls prompt
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time dir nvm vcs newline)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_left"
-POWERLEVEL9K_TIME_BACKGROUND="grey"
-POWERLEVEL9K_TIME_ICON=""
-POWERLEVEL9K_TIME_FORMAT="%D{%l:%M:%S %p}"
-source  ~/Tools/powerlevel9k/powerlevel9k.zsh-theme
+# Adds zsh-suggestions, which allows suggestions for past commands
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Sets the powerlevel10k theme
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # Allow for GIT tab completion
 autoload -Uz compinit && compinit
@@ -110,3 +111,6 @@ source .aws-credentials
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /Users/michael.lundin/Projects/ifit/wolf-workouts-service/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/michael.lundin/Projects/ifit/wolf-workouts-service/node_modules/tabtab/.completions/slss.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

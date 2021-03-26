@@ -23,12 +23,12 @@ alias disconnectVPN="osascript -e 'tell application \"Tunnelblick\"' -e '  get n
 
 pulldata() {
   connectVPN
-  mongodump --host galactica.ifit-dev.com --port $1 --ssl --sslCAFile ~/.ssh/mongodb.ca.cert.pem --sslPEMKeyFile ~/.ssh/mongodb.viper-user.key-and-cert.pem --out=/Volumes/Storage/DB_backup/$2
+	docker exec monolith_mongo mongodump --host galactica.ifit-dev.com --port $1 --ssl --sslCAFile /root/.ssh/mongodb.ca.cert.pem --sslPEMKeyFile /root/.ssh/mongodb.viper-user.key-and-cert.pem --out=/backup/$2
 	disconnectVPN
 }
 
 restoredata() {
-  mongorestore --drop --noIndexRestore /Volumes/Storage/DB_backup/$1
+	docker exec monolith_mongo mongorestore --drop --noIndexRestore /backup/$1
 }
 
 alias pulltestdata="pulldata 60000 test"
@@ -58,3 +58,4 @@ refreshifit() {
 
 alias stripewebhooks="stripe listen --forward-to http://api-local.ifit-dev.com:8080/v1/stripe/webhooks"
 alias webhooks="stripewebhooks"
+
