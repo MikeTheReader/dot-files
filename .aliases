@@ -58,4 +58,4 @@ refreshifit() {
 
 alias stripewebhooks="stripe listen --forward-to http://api-local.ifit-dev.com:8080/v1/stripe/webhooks"
 alias webhooks="stripewebhooks"
-
+alias gs="git status"

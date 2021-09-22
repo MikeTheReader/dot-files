@@ -95,12 +95,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-# Sets up the AWS-Credentials as per the devops script
-source .aws-credentials
+eval "$(pyenv init --path)"
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
