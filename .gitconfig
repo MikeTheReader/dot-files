@@ -31,14 +31,14 @@
   merge = refs/heads/master
 
 [user]
-	name = Michael Lundin
-	email = mikel@ifit.com
+	name = Mike Lundin
+	email = 
 
 [commit]
   template = ~/.gitmessage
 [core]
 	pager = diff-so-fancy | less --tabs=2 -RFX
-	excludesfile = /Users/michael.lundin/.gitignore_global
+	excludesfile = /Users/mlundin-mac/.gitignore_global
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52
@@ -46,7 +46,7 @@
 	newHighlight = green bold 22
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+	path = 
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
