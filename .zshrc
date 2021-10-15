@@ -127,6 +127,23 @@ source /usr/local/bin/virtualenvwrapper.sh
 # Enable rbenv ruby version shimming
 eval "$(rbenv init -)"
 
+#----------- Mike's change to default start here
+# Load aliases
+source ~/.aliases
+
+# Allow for GIT tab completion
+autoload -Uz compinit && compinit
+
+# Enables fuck command
+eval $(thefuck --alias)
+
+# Enable NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#----------- End Mike's changes to default
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export VOLTA_HOME="$HOME/.volta"

@@ -1,12 +1,17 @@
+# Cleans out deleted branches
 alias clean_branches="git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
-alias addspacer="defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type=\"spacer-tile\";}' && killall Dock"
+
+# Adds a spacer to the dock
+alias addspacer="defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type=\"small-spacer-tile\";}' && killall Dock"
+
+# Quick access to work repositories
 devrepo() { 
-  cd ~/Projects/ifit/$1
+  cd ~/Projects/palmetto/$1
 	code . 
 }
 
 openrepo() { 
-	cd ~/Projects/ifit/$1 
+	cd ~/Projects/palmetto/$1 
 }
 
 # Start code review. Usage: review {repo_name} {branch_name}
@@ -18,44 +23,4 @@ review() {
 	code .
 }
 
-alias connectVPN="osascript -e 'tell application \"Tunnelblick\"' -e '  get name of first configuration' -e '  connect result' -e '  repeat until result = \"CONNECTED\"' -e '    delay 1' -e '    get state of first configuration' -e '  end repeat' -e 'end tell'"
-alias disconnectVPN="osascript -e 'tell application \"Tunnelblick\"' -e '  get name of first configuration' -e '  disconnect result' -e '  repeat until result = \"EXITING\"' -e '    delay 1' -e '    get state of first configuration' -e '  end repeat' -e 'end tell'"
-
-pulldata() {
-  connectVPN
-	docker exec monolith_mongo mongodump --host galactica.ifit-dev.com --port $1 --ssl --sslCAFile /root/.ssh/mongodb.ca.cert.pem --sslPEMKeyFile /root/.ssh/mongodb.viper-user.key-and-cert.pem --out=/backup/$2
-	disconnectVPN
-}
-
-restoredata() {
-	docker exec monolith_mongo mongorestore --drop --noIndexRestore /backup/$1
-}
-
-alias pulltestdata="pulldata 60000 test"
-alias restoretestdata="restoredata test"
-
-pullviperdata() {
-  pulldata $1 viper
-}
-alias restoreviperdata="restoredata viper"
-
-refreshifit() {
-  cd ~/Projects/ifit/ifit
-	echo 'Removing node_modules...'
-	rm -rf node_modules
-	echo '\nRunning make install...'
-	make install
-	echo '\nRunning make build...'
-	make build
-	cd ./apps/new-web
-	echo '\nRemoving node_modules...'
-	rm -rf node_modules
-	echo '\nRunning npm install...'
-	npm install
-	cd ../../
-	echo 'Done.'
-}
-
-alias stripewebhooks="stripe listen --forward-to http://api-local.ifit-dev.com:8080/v1/stripe/webhooks"
-alias webhooks="stripewebhooks"
 alias gs="git status"
