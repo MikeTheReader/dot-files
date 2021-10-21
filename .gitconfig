@@ -31,8 +31,8 @@
   merge = refs/heads/master
 
 [user]
-	name = Mike Lundin
-	email = 
+	name = MikeTheReader
+	email = mlundin617@gmail.com
 
 [commit]
   template = ~/.gitmessage

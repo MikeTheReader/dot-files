@@ -77,7 +77,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugin=(
+plugins=(
+  poetry
 	mapdwell
 	git
 	dotenv
@@ -128,6 +129,9 @@ source /usr/local/bin/virtualenvwrapper.sh
 eval "$(rbenv init -)"
 
 #----------- Mike's change to default start here
+# Python poetry
+PATH="/Users/mlundin-mac/Library/Python/3.9/bin:$PATH"
+
 # Load aliases
 source ~/.aliases
 
@@ -142,6 +146,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+export GEM_HOME="$HOME/.gem"
 #----------- End Mike's changes to default
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

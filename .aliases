@@ -24,3 +24,7 @@ review() {
 }
 
 alias gs="git status"
+
+alias webserver="python -m SimpleHTTPServer 8000"
+
+alias seed-database="rails db:drop db:create db:migrate VERBOSE=false dynamo:create && rails db:seed db:schema:dump"
