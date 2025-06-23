@@ -18,7 +18,7 @@ open -a "Slack"
 # Play Spotify playlist (you’ll need to allow AppleScript control)
 osascript -e 'tell application "Spotify"
 	set shuffling to true
-	play track "spotify:playlist:37i9dQZF1FbFUwtj55HVYp"
+	play track "spotify:playlist:1xc0NOYnavLbdynDUA5QA4"
 end tell'
 
 # Open main web pages for the day
