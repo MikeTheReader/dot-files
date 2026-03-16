@@ -6,12 +6,12 @@ alias addspacer="defaults write com.apple.dock persistent-apps -array-add '{tile
 
 # Quick access to work repositories
 devrepo() { 
-  cd ~/Projects/ifit/$1
+  cd ~/Repos/Palmetto/$1
 	code . 
 }
 
 openrepo() { 
-	cd ~/Projects/ifit/$1 
+	cd ~/Repos/Palmetto/$1 
 }
 
 # Start code review. Usage: review {repo_name} {branch_name}
@@ -26,14 +26,6 @@ review() {
 alias gs="git status"
 
 alias webserver="python -m SimpleHTTPServer 8000"
-
-pull_monolith_data() {
-  docker exec monolith_mongo mongodump --host galactica.ifit-dev.com --port $1 --ssl --sslCAFile /root/.ssh/mongodb.ca.cert.pem --sslPEMKeyFile /root/.ssh/mongodb.viper-user.key-and-cert.pem --out=/backup/$1
-}
-
-restore_monolith_data() {
-	docker exec monolith_mongo mongorestore --drop --noIndexRestore /backup/$1
-}
 
 alias or="openrepo"
 
